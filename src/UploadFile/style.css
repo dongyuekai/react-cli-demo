@@ -1,0 +1,22 @@
+.wrapper {
+  position: relative;
+  background-color: gray;
+  width: 200px;
+  /* height: 100px; */
+}
+
+.input {
+  display: block;
+}
+
+.lable {
+  position: absolute;
+  border: 1px solid red;
+  width: 200px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+/*# sourceMappingURL=style.css.map */
