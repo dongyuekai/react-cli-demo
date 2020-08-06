@@ -135,7 +135,8 @@ export default class Main extends Component {
       deptLevels: [],
       selectedDeptLevel: [],
       loading: false,
-      selectedUsers: []
+      selectedUsers: [],
+      attachmentFileList: []
     }
 
     this.bigCardPic = [
@@ -228,6 +229,23 @@ export default class Main extends Component {
       uploadModalPicLoading: true
     })
   }
+  handleChangeAttachment = (info) => {
+    let fileList = [...info.fileList];
+    // 1. Limit the number of uploaded files
+    // Only to show two recent uploaded files, and old ones will be replaced by the new
+    fileList = fileList.slice(-2);
+    // 2. Read from response and show file link
+    fileList = fileList.map(file => {
+      if (file.response) {
+        // Component will show file.url as link
+        file.url = file.response.url;
+      }
+      return file;
+    });
+    this.setState({
+      attachmentFileList: fileList
+    });
+  }
 
   getUploadModal() {
     let pics = this.state.cardType === 'big' ? this.bigCardPic : this.smallCardPic
@@ -245,9 +263,10 @@ export default class Main extends Component {
         <div>方式一：选择系统模板制作图片</div>
         <div className='picTemplate'>
           {
-            pics.map(item => {
+            pics.map((item, index) => {
               return (
                 <Card
+                  key={`${index}`}
                   hoverable
                   className='picTemplateItem'
                   onClick={() => {
@@ -462,7 +481,7 @@ export default class Main extends Component {
             <div className='selectOpt'>
               <span>选定部门  </span>
               <div>
-                <TreeSelect
+                {/* <TreeSelect
                   style={{ width: "700px" }}
                   treeData={treeData}
                   value={this.state.selectedDeptLevel}
@@ -471,13 +490,13 @@ export default class Main extends Component {
                   showCheckedStrategy={SHOW_PARENT}
                   placeholder={'请选择部门'}
                   disabled={this.state.sendScope !== 'custom'}
-                />
+                /> */}
               </div>
             </div>
             <div className='selectEmployees'>
               <span>选定员工  </span>
               <div>
-                <Select
+                {/* <Select
                   mode="multiple"
                   labelInValue
                   value={ds}
@@ -492,20 +511,35 @@ export default class Main extends Component {
                   {filterOptions.map(d => (
                     <Select.Option key={d.empId}>{d.empName + '(' + d.empId + ')'}</Select.Option>
                   ))}
-                </Select>
+                </Select> */}
               </div>
             </div>
             <div className='addAttachments'>
               <p>文章附件添加</p>
-              <div>
-                <input
+              <div style={{
+                width: '117px',
+                height: '38px',
+                border: ' 2px dotted #E6EBF5'
+              }}>
+                {/* <input
                   id="uploadFile"
                   type={"file"}
                   accept={this.props.accept ? this.props.accept : ""}
                   onChange={e => {
                     // let file = e.target.files[0];
                   }}
-                />
+                /> */}
+                <Upload
+                  action='https://www.xxx.com/api/xxx'
+                  multiple={true}
+                  onChange={this.handleChangeAttachment}
+                  fileList={this.state.attachmentFileList}
+                >
+                  <div className='addAttachDiv'>
+                    <PlusOutlined style={{ color: '#3A5FFF' }} />
+                    <div style={{ fontSize: '14px', color: '#3A5FFF' }}>上传附件</div>
+                  </div>
+                </Upload>
               </div>
             </div>
             <div className='bottomBtns'>

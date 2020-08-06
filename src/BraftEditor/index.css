@@ -185,6 +185,10 @@
   width: 100%;
   height: 100%;
 }
+.modalBtn {
+  display: flex;
+  justify-content: flex-end;
+}
 .wrapper .content .content_r .selectOpt {
   display: flex;
   flex-direction: row;
@@ -209,6 +213,13 @@
   padding-left: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+.wrapper .content .content_r .addAttachments .addAttachDiv {
+  width: 117px;
+  height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .wrapper .content .content_r .bottomBtns{
   display: flex;
