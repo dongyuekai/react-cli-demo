@@ -1,45 +1,3 @@
-// import React, { Component } from 'react'
-// import BraftEditor from 'braft-editor'
-// import 'braft-editor/dist/index.css'
-
-// export default class Main extends Component {
-
-//   state = {
-//     editorState: BraftEditor.createEditorState('<p>初始值</p>'), // 设置编辑器初始内容
-//     outputHTML: '<p></p>' // 编辑器输出内容
-//   }
-
-//   componentDidMount() {
-//     this.setState({
-//       editorState: BraftEditor.createEditorState('<p>hello，<b>world!</b><p>')
-//     })
-//   }
-
-//   handleChange = (editorState) => {
-//     this.setState({
-//       editorState: editorState,
-//       outputHTML: editorState.toHTML()
-//     }, () => {
-//       console.log(editorState)
-//       console.log(this.state.outputHTML)
-//     })
-//   }
-
-//   render() {
-//     const { editorState, outputHTML } = this.state
-
-//     return (
-//       <div>
-//         <div className="editor-wrapper">
-//           <BraftEditor
-//             value={editorState}
-//             onChange={this.handleChange}
-//           />
-//         </div>
-//       </div>
-//     )
-//   }
-// }
 
 import React, { Component } from 'react'
 import BraftEditor from 'braft-editor'
@@ -140,30 +98,25 @@ export default class Main extends Component {
     }
 
     this.bigCardPic = [
-      "https://www2.autoimg.cn/g3/M08/6F/9D/ChsEkV2Mk6yAelL9AAV9sgZJwW4974.png",
-      "https://www2.autoimg.cn/g3/M07/6F/9E/ChsEkV2Mk7iARWbPAAY7PbfdGmk785.png",
-      "https://www2.autoimg.cn/g3/M01/5B/35/ChsEm12Mk8WARxc5AAc91fCiysk540.png",
-      "https://www2.autoimg.cn/g3/M01/5B/36/ChsEm12Mk9KAPzwnAAYkgAaY11w667.png",
-      "https://www2.autoimg.cn/g3/M00/6F/A2/ChsEkV2Mk96AIhSoAAZnCoWuA5U764.png",
-      "https://www2.autoimg.cn/g3/M00/67/5F/ChcCRV2Mk-qAPX6JAAY0xU7sdVU474.png",
-      "https://www2.autoimg.cn/g24/M0A/CF/67/ChcCL12QhQWAW4NCAAWaMfLa5rQ307.png",
-      "https://www2.autoimg.cn/g24/M0B/CB/CC/ChsEeV2QhRaAXteYAAZwnSVeInA237.png",
-      "https://www2.autoimg.cn/g24/M06/CB/CD/ChsEeV2QhSOAOCx8AAXmbK03Xxw118.png",
-      "https://www2.autoimg.cn/g24/M0B/CB/CE/ChsEeV2QhTCAaZh6AAYfrtHq4ZY981.png"
+      "https://www.autoimg.cn/g3/M08/6F/9D/ChsEkV2Mk6yAelL9AAV9sgZJwW4974.png",
+      "https://www.autoimg.cn/g3/M08/6F/9D/ChsEkV2Mk6yAelL9AAV9sgZJwW4974.png",
+      "https://www.autoimg.cn/g3/M08/6F/9D/ChsEkV2Mk6yAelL9AAV9sgZJwW4974.png",
+      "https://www.autoimg.cn/g3/M08/6F/9D/ChsEkV2Mk6yAelL9AAV9sgZJwW4974.png",
+      "https://www.autoimg.cn/g3/M08/6F/9D/ChsEkV2Mk6yAelL9AAV9sgZJwW4974.png",
+      "https://www.autoimg.cn/g3/M08/6F/9D/ChsEkV2Mk6yAelL9AAV9sgZJwW4974.png",
+      "https://www.autoimg.cn/g3/M08/6F/9D/ChsEkV2Mk6yAelL9AAV9sgZJwW4974.png",
+      "https://www.autoimg.cn/g3/M08/6F/9D/ChsEkV2Mk6yAelL9AAV9sgZJwW4974.png",
     ];
 
     this.smallCardPic = [
-      // "http://efile.autoimg.cn/efile/g1/M0A/EE/2D/ChcCQ127-L-ANyS9AAe5bo7KRso395.jpg",
-      "https://www2.autoimg.cn/g3/M0B/6F/9D/ChsEkV2MkwyALavlAADkW4clS5M553.png",
-      "https://www2.autoimg.cn/g30/M00/5F/48/ChsEoF2MkzCAD9_8AAD8KhXp8EQ776.png",
-      "https://www2.autoimg.cn/g27/M0A/62/D2/ChsEfF2Mkz6AATP9AAEO0S3FRGI990.png",
-      "https://www2.autoimg.cn/g27/M0B/62/D4/ChsEfF2Mk0qAIBbUAAEP0fZZAQI994.png",
-      "https://www2.autoimg.cn/g27/M05/66/95/ChcCQF2Mk1aAZbJMAAEp5BcxRZ8447.png",
-      "https://www2.autoimg.cn/g1/M0B/81/30/ChsEmV2Mk2KAHPgpAAE2r6Ab6GY160.png",
-      "https://www2.autoimg.cn/g2/M09/5A/E5/ChcCRF2QhWWAE2llAAEIChl0lFg406.png",
-      "https://www2.autoimg.cn/g28/M07/6C/02/ChsEnl2QhXOAYkAGAAEwZ2ZJM4M122.png",
-      "https://www2.autoimg.cn/g28/M0B/6C/03/ChsEnl2QhYCABlF2AAELtDJFOTg513.png",
-      "https://www2.autoimg.cn/g28/M02/6F/C8/ChcCR12QhY-ASBa8AAEsG7If4aA991.png"
+      "https://www.autoimg.cn/g3/M0B/6F/9D/ChsEkV2MkwyALavlAADkW4clS5M553.png",
+      "https://www.autoimg.cn/g3/M0B/6F/9D/ChsEkV2MkwyALavlAADkW4clS5M553.png",
+      "https://www.autoimg.cn/g3/M0B/6F/9D/ChsEkV2MkwyALavlAADkW4clS5M553.png",
+      "https://www.autoimg.cn/g3/M0B/6F/9D/ChsEkV2MkwyALavlAADkW4clS5M553.png",
+      "https://www.autoimg.cn/g3/M0B/6F/9D/ChsEkV2MkwyALavlAADkW4clS5M553.png",
+      "https://www.autoimg.cn/g3/M0B/6F/9D/ChsEkV2MkwyALavlAADkW4clS5M553.png",
+      "https://www.autoimg.cn/g3/M0B/6F/9D/ChsEkV2MkwyALavlAADkW4clS5M553.png",
+      "https://www.autoimg.cn/g3/M0B/6F/9D/ChsEkV2MkwyALavlAADkW4clS5M553.png",
     ];
   }
 
@@ -203,7 +156,10 @@ export default class Main extends Component {
   }
 
   cardTypeChange = (e) => {
-    this.setState({ cardType: e.target.value })
+    this.setState({
+      cardType: e.target.value,
+      cardPic: ''
+    })
   }
 
   handleModal = (visible) => {
@@ -481,7 +437,7 @@ export default class Main extends Component {
             <div className='selectOpt'>
               <span>选定部门  </span>
               <div>
-                {/* <TreeSelect
+                <TreeSelect
                   style={{ width: "700px" }}
                   treeData={treeData}
                   value={this.state.selectedDeptLevel}
@@ -490,13 +446,13 @@ export default class Main extends Component {
                   showCheckedStrategy={SHOW_PARENT}
                   placeholder={'请选择部门'}
                   disabled={this.state.sendScope !== 'custom'}
-                /> */}
+                />
               </div>
             </div>
             <div className='selectEmployees'>
               <span>选定员工  </span>
               <div>
-                {/* <Select
+                <Select
                   mode="multiple"
                   labelInValue
                   value={ds}
@@ -511,7 +467,7 @@ export default class Main extends Component {
                   {filterOptions.map(d => (
                     <Select.Option key={d.empId}>{d.empName + '(' + d.empId + ')'}</Select.Option>
                   ))}
-                </Select> */}
+                </Select>
               </div>
             </div>
             <div className='addAttachments'>
