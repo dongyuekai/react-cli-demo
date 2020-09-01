@@ -8,5 +8,7 @@ import BraftEditor from './BraftEditor/index.js'
 // import ReactUEditor from './ReactUEditor'
 // import ReactDraft from './ReactDraft'
 
+import App from './pages'
 
-ReactDOM.render(<BraftEditor />, document.getElementById('root'));
+
+ReactDOM.render(<App />, document.getElementById('root'));
