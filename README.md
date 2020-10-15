@@ -1,44 +1,203 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## react-app-rewired使用
+## 介绍
+create-creact-app项目，如果需要手动修改配置，需先npm run eject弹出配置，这个过程是不可逆的
 
-## Available Scripts
+推荐使用第三方工具进行修改
 
-In the project directory, you can run:
+这里介绍使用react-app-rewired。它的作用是用来帮助你重写react脚手架配置
 
-### `npm start`
+react-app-rewired@2.x版本需要搭配customize-cra使用。
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+customize-cra的作用是帮助你自定义react脚手架2.x版本配置
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## 基本使用
+安装：npm i react-app-rewired customize-cra --save-dev
 
-### `npm test`
+在根目录下新建文件config-overrides.js文件
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+module.exports = function override(config, env) {
+  // do stuff with the webpack config...
+  return config
+}
+修改package.json文件
+{
+  // ...
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+  },
+  // ...
+}
+## 使用ES7的装饰器
+修改config-overrides.js文件
+const {
+  override,
+  addDecoratorsLegacy
+} = require('customize-cra')
 
-### `npm run build`
+module.exports = override(
+  // enable legacy decorators babel plugin
+  addDecoratorsLegacy(),
+)
+## 使用Less
+安装less和less-loader：npm i less less-loader --save-dev
+修改config-overrides.js文件
+const {
+  override,
+  // ...
+  addLessLoader,
+  // ...
+} = require('customize-cra')
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+module.exports = override(
+  // ...
+  // less
+  // addLessLoader(),
+  addLessLoader({
+    lessOptions: {
+      javascriptEnabled: true,
+      // Optionally adjust URLs to be relative. When false, URLs are already relative to the entry less file.
+      relativeUrls: false,
+      modifyVars: { '@primary-color': '#A80000' },
+      // cssModules: {
+      //   // if you use CSS Modules, and custom `localIdentName`, default is '[local]--[hash:base64:5]'.
+      //   localIdentName: "[path][name]__[local]--[hash:base64:5]",
+      // }
+    } 
+  })
+  // ...
+)
+## antd-mobile按需引入
+安装babel-plugin-import：npm i babel-plugin-import --save-dev
+修改config-overrides.js文件
+const {
+  override,
+  // ...
+  fixBabelImports
+} = require('customize-cra')
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+module.exports = override(
+  // ...
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  // antd-mobile按需加载 - babel-plugin-import
+  fixBabelImports('import', {
+    libraryName: 'antd-mobile',
+    style: 'css'
+  })
+)
+修改config-overrides.js文件，覆盖默认样式
+const {
+  override,
+  // ...
+  addLessLoader,
+  fixBabelImports,
+  // ...
+} = require('customize-cra')
 
-### `npm run eject`
+module.exports = override(
+  // ...
+  // less
+  addLessLoader({
+    // 现在的写法
+    lessOptions: {
+      javascriptEnabled: true,
+      modifyVars: { '@brand-primary': '#1DA57A' },
+    },
+    // 原来的写法
+    // javascriptEnabled: true,
+    // modifyVars: {
+    //   '@primary-color': '#1DA57A',
+    // },
+    // localIdentName: '[local]--[hash:base64:5]' // 自定义 CSS Modules 的 localIdentName
+  }),
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  // antd-mobile按需加载 - babel-plugin-import
+  fixBabelImports('import', {
+    libraryName: 'antd-mobile',
+    libraryDirectory: 'es',
+    // style: 'css'
+    style: true
+  }),
+  // ...
+)
+## 添加别名
+修改config-overrides.js文件
+const {
+  override,
+  // ...
+  addWebpackAlias
+} = require('customize-cra')
+const path = require('path')
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+module.exports = override(
+  // ...
+  // 路径别名
+  addWebpackAlias({
+    '@': path.resolve(__dirname, 'src')
+  })
+)
+## 配置多环境
+安装dotenv-cli：npm i dotenv-cli --save-dev
+在根目录下添加.env.dev文件
+REACT_APP_URL_API=http://dev.com
+REACT_APP_URL_UPLOAD=http://upload.dev.com
+在根目录下添加.env.sit文件
+REACT_APP_URL_API=http://sit.com
+REACT_APP_URL_UPLOAD=http://upload.sit.com
+在根目录下添加.env.prod文件
+REACT_APP_URL_API=http://prod.com
+REACT_APP_URL_UPLOAD=http://upload.prod.com
+修改package.json文件
+{
+  // ...
+  "scripts": {
+    "start": "dotenv -e .env.dev react-app-rewired start",
+    "build:sit": "dotenv -e .env.sit react-app-rewired build",
+    "build:prod": "dotenv -e .env.prod react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-scripts eject"
+  },
+  // ...
+}
+在index.html中使用%REACT_APP_URL_API%
+在js/jsx中：process.env.REACT_APP_URL_API
+## proxy
+开发环境下跨域问题，前端一般是给本地的devServer设置代理
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+安装http-proxy-middleware：npm i http-proxy-middleware --save-dev
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+在src/目录下新建文件setupProxy.js（注意：文件名不能修改！！cra会按照src/setupProxy.js这个路径解析）
 
-## Learn More
+const proxy = require('http-proxy-middleware')
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+module.exports = function(app) {
+  app.use(
+    proxy('/api', {
+      target: 'http://localhost:3001/',
+      changeOrigin: true,
+      // pathRewrite: {
+      //   '^/api': ''
+      // }
+    })
+  )
+}
+重新启动即可
+http-proxy-middleware的1.x版本做了较大改动。
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+以上方法配置会出现proxy is not a function的问题
+
+解决办法是修改src/setupProxy.js文件
+
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
+module.exports = function(app) {
+  app.use(createProxyMiddleware('/api', {
+    target: 'http://localhost:3001/',
+    changeOrigin: true,
+    // pathRewrite: {
+    //   '^/api': ''
+    // }
+  }))
+}

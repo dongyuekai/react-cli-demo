@@ -22,10 +22,10 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "dotenv -e .env.prod react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -35,5 +35,14 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "babel-plugin-import": "^1.13.1",
+    "customize-cra": "^1.0.0",
+    "dotenv-cli": "^4.0.0",
+    "http-proxy-middleware": "^1.0.6",
+    "less": "^3.12.2",
+    "less-loader": "^7.0.2",
+    "react-app-rewired": "^2.1.6"
+  }
 }
