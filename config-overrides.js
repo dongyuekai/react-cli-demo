@@ -3,9 +3,11 @@ const {
   addDecoratorsLegacy,
   addLessLoader,
   fixBabelImports,
-  addWebpackAlias //添加别名
+  addWebpackAlias,
+  addWebpackPlugin, //添加别名
 } = require('customize-cra')
 const path = require('path')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 module.exports = override(
   // 添加别名
   addWebpackAlias({
@@ -24,5 +26,6 @@ module.exports = override(
   fixBabelImports('import', {
     libraryName: 'antd-mobile',
     style: 'css'
-  })
+  }),
+  addWebpackPlugin(new BundleAnalyzerPlugin())
 )
