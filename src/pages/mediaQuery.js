@@ -1,4 +1,4 @@
-react-responsiveimport React from 'react'
+import React from 'react'
 import MediaQuery from 'react-responsive'
 export default () => {
   return (
