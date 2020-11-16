@@ -27,5 +27,5 @@ module.exports = override(
     libraryName: 'antd-mobile',
     style: 'css'
   }),
-  addWebpackPlugin(new BundleAnalyzerPlugin())
+  // addWebpackPlugin(new BundleAnalyzerPlugin())
 )
