@@ -8,6 +8,8 @@ const Home = loadable(() => import('./home'))
 const Detail = lazy(() => import('./detail'))
 const Login = loadable(() => import('./login'))
 const Write = loadable(() => import('./write'))
+const UseMediaQuery = loadable(() => import('./useMediaQuery'))
+const MediaQuery = loadable(() => import('./mediaQuery'))
 
 export default class App extends Component {
   render() {
@@ -19,6 +21,8 @@ export default class App extends Component {
             <Route path='/home' exact component={Home} />
             <Route path='/login' exact component={Login} />
             <Route path='/write' exact component={Write} />
+            <Route path='/UseMediaQuery' exact component={UseMediaQuery} />
+            <Route path='/MediaQuery' exact component={MediaQuery} />
             <Route
               path='/detail/:id'
               exact
