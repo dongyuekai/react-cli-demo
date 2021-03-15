@@ -4,6 +4,7 @@ import loadable from '../Utils/loadable'
 
 // 异步加载组件
 const Home = loadable(() => import('./home'))
+const List = loadable(() => import('./list'))
 // const Detail = loadable(() => import('./detail'))
 const Detail = lazy(() => import('./detail'))
 const Login = loadable(() => import('./login'))
@@ -23,6 +24,7 @@ export default class App extends Component {
             <Route path='/write' exact component={Write} />
             <Route path='/UseMediaQuery' exact component={UseMediaQuery} />
             <Route path='/MediaQuery' exact component={MediaQuery} />
+            <Route path='/list' exact component={List} />
             <Route
               path='/detail/:id'
               exact

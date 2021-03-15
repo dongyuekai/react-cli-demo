@@ -5,13 +5,17 @@
   "dependencies": {
     "ace-builds": "^1.4.12",
     "antd": "^4.5.2",
+    "babel-jest": "^24.9.0",
     "braft-editor": "^2.3.9",
     "draft-js": "^0.11.6",
     "draftjs-to-html": "^0.9.1",
     "dyk-webpack-build-tools": "^1.0.3",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "express": "^4.17.1",
     "html-to-draftjs": "^1.5.0",
     "ifanrx-react-ueditor": "^2.3.0",
+    "jest": "^26.6.3",
     "react": "^16.13.1",
     "react-codemirror": "^1.0.0",
     "react-dom": "^16.13.1",
@@ -25,8 +29,8 @@
   "scripts": {
     "start": "dotenv -e .env.prod react-app-rewired start",
     "build": "react-app-rewired build",
-    "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "test": "jest --config .jest.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -38,6 +42,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.13.5",
     "babel-plugin-import": "^1.13.1",
     "customize-cra": "^1.0.0",
     "dotenv-cli": "^4.0.0",
@@ -45,6 +50,9 @@
     "less": "^3.12.2",
     "less-loader": "^7.0.2",
     "react-app-rewired": "^2.1.6",
+    "react-virtualized": "^9.22.3",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.3",
     "webpack-bundle-analyzer": "^3.9.0"
   }
 }
