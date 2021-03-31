@@ -11,6 +11,7 @@ const Login = loadable(() => import('./login'))
 const Write = loadable(() => import('./write'))
 const UseMediaQuery = loadable(() => import('./useMediaQuery'))
 const MediaQuery = loadable(() => import('./mediaQuery'))
+const Animation = loadable(() => import('./animation'))
 
 export default class App extends Component {
   render() {
@@ -25,6 +26,7 @@ export default class App extends Component {
             <Route path='/UseMediaQuery' exact component={UseMediaQuery} />
             <Route path='/MediaQuery' exact component={MediaQuery} />
             <Route path='/list' exact component={List} />
+            <Route path='/animation' exact component={Animation} />
             <Route
               path='/detail/:id'
               exact
