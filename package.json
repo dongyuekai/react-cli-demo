@@ -30,7 +30,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-spring": "^9.0.0",
-    "react-transition-group": "^4.4.1"
+    "react-transition-group": "^4.4.1",
+    "react-use": "^17.2.4"
   },
   "scripts": {
     "start": "dotenv -e .env.prod react-app-rewired start",
